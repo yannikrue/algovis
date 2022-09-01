@@ -10,7 +10,20 @@
 <header>
     <a href="sorting.html" align="center">Sorting algorithm  Visualizer</a>
     <a href="search.html" align="center">Search algorithm  Visualizer</a>
+
+    <div class="col" id="input">
+        <span id="size">Size
+            <input id="arr_sz" type="range" min="5" max="100" step=1 value=20>
+        </span>
+        <span id="speed">Speed
+            <input id="speed_input" type="range" min="20" max="300" stepDown=10 value=60>
+        </span>
+    </div>
 </header>
 <body class="p-3 mb-2 bg-dark text-white">
+    
+    <div id="can" class="flex-container"></div>
+    <script src="canvas.js"></script>
+    <script src="dfs.js"></script>
 </body>
 </html>
