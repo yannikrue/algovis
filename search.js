@@ -34,6 +34,7 @@ function waitforme(milisec) {
 
 const container = document.querySelector('#can');
 const color = "black";
+const bcolor = "#9da9c1";
 const resetBtn = document.querySelector('.clear');
 let arraySize = document.querySelector('#arr_sz');
 
@@ -56,12 +57,20 @@ function populate() {
     
     div.addEventListener('mouseover', function(){
         if(!draw || running) return;
-        div.style.backgroundColor = color;
+        if (div.style.backgroundColor == "black") {
+            div.style.backgroundColor = bcolor;
+        } else {
+            div.style.backgroundColor = color;
+        }
         fixed(i, arraySize, div);
     })
     div.addEventListener('mousedown', function(){
         if(running) return;
-        div.style.backgroundColor = color;
+        if (div.style.backgroundColor == "black") {
+            div.style.backgroundColor = bcolor;
+        } else {
+            div.style.backgroundColor = color;
+        }
         fixed(i, arraySize, div);
     })
     
@@ -110,45 +119,20 @@ function createNewArray() {
 }
 
 function loadArray() {
-    let walls = [];
-    for (let i = 0; i < arraySize.value * arraySize.value -1; i++) {
-        if (container.children[i].style.backgroundColor == "black") {
-            walls.push(i);
-        }
-    }
+ 
+    let i = 0;
+    array = []
 
-    for(let y = 0; y < arraySize.value; y++) {
-        array[y] = []
-        for(let x = 0; x < arraySize.value; x++) {
-            if (x + 1 <= arraySize - 1) {
-                array[y][x + 1] = 1;
-                array[x + 1][y] = 1;
-
-            } else if (x - 1 >= 0) {
-                array[y][x - 1] = 1;
-                array[x - 1][y] = 1;
-
-            } else if (y + 1 <= arraySize - 1) {
-                array[y + 1][x] = 1;
-                array[x][y + 1] = 1;
-
-            } else if (y - 1 >= 0) {
-                array[y - 1][x] = 1;
-                array[x][y - 1] = 1;
-            }
-            
-            if (x == y) {
-            }
-            
-            if (walls.includes(y) || walls.includes(x)) {
+    for (let y = 0; y < arraySize.value; y++) {
+        array[y] = [];
+        for (let x = 0; x < arraySize.value; x++) {
+            if (container.children[i].style.backgroundColor == "black") {
                 array[y][x] = 0;
-                array[x][y] = 0;
+            } else {
+                array[y][x] = 1;
             }
-
-
+            i++;
         }
     }
-    
-    console.log(walls);
+    console.log(array)
 }
-
