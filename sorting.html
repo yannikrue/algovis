@@ -12,8 +12,8 @@
     <a href="search.html" align="center">Search algorithm  Visualizer</a>
     <nav>
         <div class="row">
-            <div class="col gap-2 d-sm-flex" id="newArray">
-                <button type="button" class="btn btn-outline-success btn-dark newArray">New Array</button>
+            <div id="newArray">
+                <button type="button" class="newArray">New Array</button>
             </div>
             <div class="col" id="input">
                 <span id="size">Size
@@ -23,17 +23,17 @@
                     <input id="speed_input" type="range" min="5" max="300" stepDown=10 value=60>
                 </span>
             </div>
-            <div class="col gap-2 d-sm-flex justify-content-end">
-                <button type="button" class="btn btn-outline-primary btn-dark bubbleSort">Bubble Sort</button>
-                <button type="button" class="btn btn-outline-primary btn-dark selectionSort">Selection Sort</button>
-                <button type="button" class="btn btn-outline-primary btn-dark insertionSort">Insertion Sort</button>
-                <button type="button" class="btn btn-outline-primary btn-dark quickSort">Quick Sort</button>
-                <button type="button" class="btn btn-outline-primary btn-dark mergeSort">Merge Sort</button>
+            <div>
+                <button type="button" class="bubbleSort">Bubble Sort</button>
+                <button type="button" class="selectionSort">Selection Sort</button>
+                <button type="button" class="insertionSort">Insertion Sort</button>
+                <button type="button" class="quickSort">Quick Sort</button>
+                <button type="button" class="mergeSort">Merge Sort</button>
             </div>
         </div>
     </nav>
 </header>
-<body class="p-3 mb-2 bg-dark text-white">
+<body>
     
     <div id="bars" class="flex-container"></div>
     <script src="sorting.js"></script>

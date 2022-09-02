@@ -11,19 +11,31 @@
     <a href="sorting.html" align="center">Sorting algorithm  Visualizer</a>
     <a href="search.html" align="center">Search algorithm  Visualizer</a>
 
-    <div class="col" id="input">
-        <span id="size">Size
-            <input id="arr_sz" type="range" min="5" max="100" step=1 value=20>
-        </span>
-        <span id="speed">Speed
-            <input id="speed_input" type="range" min="20" max="300" stepDown=10 value=60>
-        </span>
-    </div>
+    <nav>
+        <div class="row">
+            <div id="clear">
+                <button type="button" class="clear">Clear</button>
+            </div>
+            <div class="col" id="input">
+                <span id="size">Size
+                    <input id="arr_sz" type="range" min="10" max="35" step=1 value=25>
+                </span>
+                <span id="speed">Speed
+                    <input id="speed_input" type="range" min="5" max="300" stepDown=10 value=60>
+                </span>
+            </div>
+            <div>
+                <button type="button" class="dfs">Depth First Search</button>
+                <button type="button" class="bfs">Breadth First Search</button>
+            </div>
+        </div>
+    </nav>
 </header>
-<body class="p-3 mb-2 bg-dark text-white">
-    
-    <div id="can" class="flex-container"></div>
-    <script src="canvas.js"></script>
+<body>
+    <div id="container">
+        <div id="can" class="flex-container"></div>
+    </div>
+    <script src="search.js"></script>
     <script src="dfs.js"></script>
 </body>
 </html>
