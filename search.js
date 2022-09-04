@@ -30,6 +30,121 @@ function waitforme(milisec) {
     }) 
 }
 
+// Stack class
+class Stack {
+  
+    // Array is used to implement stack
+    constructor() {
+        this.items = [];
+    }
+  
+    push(element) {
+        this.items.push(element);
+    }
+
+    pop() {
+        if (this.items.length == 0)
+            return "Underflow";
+        return this.items.pop();
+    }
+
+    peek() {
+        return this.items[this.items.length - 1];
+    }
+
+    isEmpty() {
+        return this.items.length == 0;
+    }
+    
+    printStack() {
+        var str = "";
+        for (var i = 0; i < this.items.length; i++)
+            str += this.items[i] + " ";
+        return str;
+    }
+}
+
+class Node {
+    constructor (y, x) {
+      this.left = null;
+      this.right = null;
+      this.up = null;
+      this.down = null;
+      this.x = x;
+      this.y = y;
+    }
+}
+  
+class dfsTree {
+    constructor (root, end, array) {
+      this.root = root;
+      this.end = end;
+      this.stack = new Stack();
+      this.array = array;
+    }
+  
+    grow(currentPos) {
+        if (currentPos.x == this.end.x && currentPos.y == this.end.y) {
+            console.log("solved");
+            return;
+        } else {
+            if (currentPos.y < this.array.length && currentPos.x < this.array.length) {
+                this.stack.push(currentPos);
+                console.log(currentPos)
+                container.children[currentPos.y * this.array.length + currentPos.x].style.backgroundColor = "blue";
+                fixed();
+            }
+            //checks if next node is free
+    
+            //down
+            if (currentPos.y + 1 < this.array.length) {
+                if (this.array[currentPos.y + 1][currentPos.x] == 1) {
+                    currentPos.down = new Node(currentPos.y + 1, currentPos.x);
+                    this.grow(currentPos.down);
+                    return;
+                }
+            }   
+            
+            //right
+            if (currentPos.x + 1 < this.array.length) {
+                if (this.array[currentPos.y][currentPos.x + 1] == 1) {
+                    currentPos.right = new Node(currentPos.y, currentPos.x + 1);
+                    this.grow(currentPos.right);
+                    return;
+                }
+            }
+            
+            //up
+            if (currentPos.y - 1 < this.array.length) {
+                if (this.array[currentPos.y - 1][currentPos.x] == 1) {
+                    currentPos.up = new Node(currentPos.y - 1, currentPos.x);
+                    this.grow(currentPos.up);
+                    return;
+                }
+            }
+            //left
+            if (currentPos.x - 1 < this.array.length) {
+                if (this.array[currentPos.y][currentPos.x - 1] == 1) {
+                    currentPos.left = new Node(currentPos.y, currentPos.x - 1);
+                    this.grow(currentPos.left);
+                    return;
+                }
+            }
+        }
+    }
+}
+
+
+let delay = 260;
+
+let delayElement = document.querySelector('#speed_input');
+
+delayElement.addEventListener('input', function(){
+    console.log(delayElement.value, typeof(delayElement.value));
+    delay = 320 - parseInt(delayElement.value);
+});
+
+
 
 
 const container = document.querySelector('#can');
@@ -41,42 +156,39 @@ let arraySize = document.querySelector('#arr_sz');
 let draw = false;
 let running = false;
 
-function fixed(i, arraySize, div) {
-    if (i == 0) {
-        div.style.backgroundColor = "green";
-    } else if (i == arraySize.value * arraySize.value - 1){
-        div.style.backgroundColor = "red";        
-    }
-}
 
 function populate() {
-  container.style.setProperty('--size', arraySize.value);
-  for (let i = 0; i < arraySize.value * arraySize.value; i++) {
-    const div = document.createElement('div');
-    div.classList.add('pixel');
-    
-    div.addEventListener('mouseover', function(){
-        if(!draw || running) return;
-        if (div.style.backgroundColor == "black") {
-            div.style.backgroundColor = bcolor;
-        } else {
-            div.style.backgroundColor = color;
-        }
-        fixed(i, arraySize, div);
-    })
-    div.addEventListener('mousedown', function(){
-        if(running) return;
-        if (div.style.backgroundColor == "black") {
-            div.style.backgroundColor = bcolor;
-        } else {
-            div.style.backgroundColor = color;
-        }
-        fixed(i, arraySize, div);
-    })
-    
-    fixed(i, arraySize, div);    
-    container.appendChild(div);
-  }
+    container.style.setProperty('--size', arraySize.value);
+    for (let i = 0; i < arraySize.value * arraySize.value; i++) {
+        const div = document.createElement('div');
+        div.classList.add('pixel');
+        
+        div.addEventListener('mouseover', function(){
+            if(!draw || running) return;
+            if (div.style.backgroundColor == "black") {
+                div.style.backgroundColor = bcolor;
+            } else {
+                div.style.backgroundColor = color;
+            }
+            fixed();
+        })
+        div.addEventListener('mousedown', function(){
+            if(running) return;
+            if (div.style.backgroundColor == "black") {
+                div.style.backgroundColor = bcolor;
+            } else {
+                div.style.backgroundColor = color;
+            }
+            fixed(); 
+        })
+        container.appendChild(div);
+    }
+    fixed();
+}
+
+function fixed() {
+    container.children[0].style.backgroundColor = "green";
+    container.children[arraySize.value * arraySize.value - 1].style.backgroundColor = "red";
 }
 
 window.addEventListener("mousedown", function(){
@@ -98,15 +210,6 @@ resetBtn.addEventListener('click', function(){
 arraySize.addEventListener('input', function(){
     console.log(arraySize.value, typeof(arraySize.value));
     createNewArray(parseInt(arraySize.value));
-});
-
-let delay = 260;
-
-let delayElement = document.querySelector('#speed_input');
-
-delayElement.addEventListener('input', function(){
-    console.log(delayElement.value, typeof(delayElement.value));
-    delay = 320 - parseInt(delayElement.value);
 });
 
 let array = [];
@@ -134,5 +237,5 @@ function loadArray() {
             i++;
         }
     }
-    console.log(array)
+    console.log(array);
 }
