@@ -83,10 +83,11 @@ class dfsTree {
       this.array = array;
     }
   
-    grow(currentPos) {
+    async grow(currentPos) {
+        await waitforme(delay);
         if (currentPos.x == this.end.x && currentPos.y == this.end.y) {
             console.log("solved");
-            return;
+            return true;
         } else {
             if (currentPos.y < this.array.length && currentPos.x < this.array.length) {
                 this.stack.push(currentPos);
@@ -97,39 +98,50 @@ class dfsTree {
             //checks if next node is free
     
             //down
-            if (currentPos.y + 1 < this.array.length) {
+            if (currentPos.y + 1 < this.array.length && currentPos.y + 1 >= 0) {
                 if (this.array[currentPos.y + 1][currentPos.x] == 1) {
                     currentPos.down = new Node(currentPos.y + 1, currentPos.x);
-                    this.grow(currentPos.down);
-                    return;
+                    this.array[currentPos.down.y][currentPos.down.x] = 2;
+                    if(await this.grow(currentPos.down)) {
+                        return true;
+                    }
                 }
             }   
             
             //right
-            if (currentPos.x + 1 < this.array.length) {
+            if (currentPos.x + 1 < this.array.length && currentPos.x + 1 >= 0) {
                 if (this.array[currentPos.y][currentPos.x + 1] == 1) {
                     currentPos.right = new Node(currentPos.y, currentPos.x + 1);
-                    this.grow(currentPos.right);
-                    return;
+                    this.array[currentPos.right.y][currentPos.right.x] = 2;
+                    if(await this.grow(currentPos.right)) {
+                        return true;
+                    }
                 }
             }
             
             //up
-            if (currentPos.y - 1 < this.array.length) {
+            if (currentPos.y - 1 < this.array.length && currentPos.y - 1 >= 0) {
                 if (this.array[currentPos.y - 1][currentPos.x] == 1) {
                     currentPos.up = new Node(currentPos.y - 1, currentPos.x);
-                    this.grow(currentPos.up);
-                    return;
+                    this.array[currentPos.up.y][currentPos.up.x] = 2;
+                    if(await this.grow(currentPos.up)) {
+                        return true;
+                    }
                 }
             }
             //left
-            if (currentPos.x - 1 < this.array.length) {
+            if (currentPos.x - 1 < this.array.length && currentPos.x - 1 >= 0) {
                 if (this.array[currentPos.y][currentPos.x - 1] == 1) {
                     currentPos.left = new Node(currentPos.y, currentPos.x - 1);
-                    this.grow(currentPos.left);
-                    return;
+                    this.array[currentPos.left.y][currentPos.left.x] = 2;
+                    if(await this.grow(currentPos.left)) {
+                        return true;
+                    }
                 }
             }
+            this.array[currentPos.y][currentPos.x] = 2;
+            container.children[currentPos.y * this.array.length + currentPos.x].style.backgroundColor = "cyan";
+            return false;
         }
     }
 }

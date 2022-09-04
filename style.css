@@ -6,6 +6,28 @@ body {
     background-color: #d2d8e6;
 }
 
+#title{
+    text-align: center;
+    margin-top: 30%;
+}
+
+#titles{
+    text-align: center;
+}
+
+.links{
+    background-color: #6f8bca;
+    padding: 10px;
+    border-radius: 7px;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 10%;
+}
+
+nav{
+    margin-top: 20px;
+}
+
 canvas{
     width: 625px;
     height: 625px;

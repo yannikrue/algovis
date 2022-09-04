@@ -5,10 +5,9 @@ dfsBtn.addEventListener('click', function(){
     //console.log(a);
 })
 
-function solveShort(array, startPoint, exitPoint) {
+async function solveShort(array, startPoint, exitPoint) {
   let start = new Node(startPoint[0], startPoint[1]);
   let end = new Node(exitPoint[0], exitPoint[1]);
   let tree = new dfsTree(start, end, array);
-  tree.grow(tree.root);
-
+  await tree.grow(tree.root);
 }
