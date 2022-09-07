@@ -35,7 +35,8 @@ canvas{
 
 #can{
     --size: 4;
-    height: 800px;
+    height: 500px;
+    width: 500px;
     display: grid;
     grid-template-columns: repeat(var(--size), 1fr);
     grid-template-rows: repeat(var(--size), 1fr);
