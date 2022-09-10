@@ -30,6 +30,44 @@ function waitforme(milisec) {
     }) 
 }
 
+let array = [];
+
+let small_maze = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [0, 1, 0, 0, 0, 1, 0, 0, 1],
+    [1, 1, 0, 1, 0, 1, 1, 0, 1], 
+    [0, 1, 1, 1, 0, 0, 0, 0, 1],
+    [1, 1, 0, 1, 0, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 1, 0, 0, 1],
+    [1, 0, 1, 0, 1, 1, 0, 1, 1],
+    [1, 0, 1, 0, 1, 0, 0, 0, 0],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1]
+]
+
+let big_maze = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0], 
+    [1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0],
+    [0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1], 
+    [0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1],
+    [0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1],
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1], 
+    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1], 
+    [1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1], 
+    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+    [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1]
+]
+
+
 class Node {
     constructor (y, x, back) {
       this.left = null;
@@ -58,6 +96,8 @@ const container = document.querySelector('#can');
 const color = "black";
 const bcolor = "#9da9c1";
 const resetBtn = document.querySelector('.clear');
+const smallBtn = document.querySelector('.small');
+const bigBtn = document.querySelector('.big');
 let arraySize = document.querySelector('#arr_sz');
 
 let draw = false;
@@ -111,14 +151,25 @@ function reset(){
 
 resetBtn.addEventListener('click', function(){
     reset();
-})
-
-arraySize.addEventListener('input', function(){
-    console.log(arraySize.value, typeof(arraySize.value));
-    createNewArray(parseInt(arraySize.value));
 });
 
-let array = [];
+smallBtn.addEventListener('click', function(){
+    uploadMaze(small_maze);
+});
+
+bigBtn.addEventListener('click', function(){
+    uploadMaze(big_maze);
+});
+
+arraySize.addEventListener('input', function(){
+    inputSize();
+});
+
+function inputSize(){
+    //console.log(arraySize.value, typeof(arraySize.value));
+    createNewArray(parseInt(arraySize.value));
+}
+
 
 createNewArray();
 
@@ -144,4 +195,20 @@ function loadArray() {
         }
     }
     console.log(array);
+}
+
+async function uploadMaze(maze) {
+    
+    document.getElementById("arr_sz").value = maze.length;
+    inputSize();
+
+    let i = 0;
+    for (let y = 0; y < maze.length; y++) {
+        for (let x = 0; x < maze.length; x++) {
+            if (maze[y][x] == 0) {
+                container.children[i].style.backgroundColor = "black";
+            }
+            i++;
+        }
+    }
 }
