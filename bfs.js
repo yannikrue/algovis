@@ -13,7 +13,7 @@ bfsBtn.addEventListener('click', async function(){
 async function solveBfs(array, startPoint, exitPoint) {
     let start = new Node(startPoint[0], startPoint[1]);
     let end = new Node(exitPoint[0], exitPoint[1]);
-    let tree = new dfsTree(start, end, array);
+    let tree = new bfsTree(start, end, array);
     console.log("hier");
     if(!await tree.grow(new Queue())) {
       alert("No solution found!");
@@ -72,9 +72,9 @@ class bfsTree {
         } else {
             currentPos = queue.dequeue();
         }
-        console.log(currentPos);
 
         if (currentPos.x == this.end.x && currentPos.y == this.end.y) {
+            this.backtrace(currentPos);
             return true;
         } else {
             if (currentPos.y < this.array.length && currentPos.x < this.array.length) {
@@ -120,13 +120,19 @@ class bfsTree {
                 }
             }
 
-            if (queue.isEmpty) {
+            if (!await this.grow(queue)) {
                 this.array[currentPos.y][currentPos.x] = 2;
                 container.children[currentPos.y * this.array.length + currentPos.x].style.backgroundColor = "cyan";
                 fixed();
                 await waitforme(delay)
                 return false;
+            } else {
+                    return true;
             }
         }
+    }
+
+    backtrace(currentPos) {
+        console.log(currentPos);
     }
 }
