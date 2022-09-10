@@ -6,13 +6,13 @@ body {
     background-color: #d2d8e6;
 }
 
+header{
+    text-align: center;
+}
+
 #title{
     text-align: center;
     margin-top: 30%;
-}
-
-#titles{
-    text-align: center;
 }
 
 .links{
@@ -35,8 +35,9 @@ canvas{
 
 #can{
     --size: 4;
-    height: 500px;
-    width: 500px;
+    height: 70vh;
+    width: 70vh;
+
     display: grid;
     grid-template-columns: repeat(var(--size), 1fr);
     grid-template-rows: repeat(var(--size), 1fr);
@@ -45,8 +46,10 @@ canvas{
 }
 
 #container{
-    padding-left: 25%;
-    padding-right: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
 }
 
 .flex-container{
@@ -70,19 +73,20 @@ canvas{
     transition: 0.1s all ease;
 }
 
-.row{
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+.slider {
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
-#input{
-    display: flex;
-    padding: 10px;
-    justify-content: space-around;
+#input {
+    margin-top: 20px;
 }
 
-.btn{
+button{
+    height: 3vh;
     background: #6f8bca;
     border-radius: 5px;
     border: none;
+    margin-right: 20px;
+    margin-top: 20px;
 }

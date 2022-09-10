@@ -7,26 +7,24 @@
     <title>Sorting Visualizer</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<header id="titles">
-    <a href="sorting.html" class="links">Sorting algorithm  Visualizer</a>
-    <a href="search.html" class="links">Search algorithm  Visualizer</a>
+<header>
+    <div id="titles">
+        <a href="sorting.html" class="links">Sorting algorithm  Visualizer</a>
+        <a href="search.html" class="links">Search algorithm  Visualizer</a>
+    </div>
     <nav>
-        <div class="row">
-            <div id="clear">
-                <button type="button" class="clear">Clear</button>
-            </div>
-            <div class="col" id="input">
-                <span id="size">Size
-                    <input id="arr_sz" type="range" min="8" max="20" step=1 value=8>
-                </span>
-                <span id="speed">Speed
-                    <input id="speed_input" type="range" min="10" max="300" stepDown=10 value=100>
-                </span>
-            </div>
-            <div>
-                <button type="button" class="dfs">Depth First Search</button>
-                <button type="button" class="bfs">Breadth First Search</button>
-            </div>
+        <div class="col" id="input">
+            <span id="size" class="slider">Size
+                <input id="arr_sz" type="range" min="8" max="20" step=1 value=8>
+            </span>
+            <span id="speed" class="slider">Speed
+                <input id="speed_input" type="range" min="10" max="300" stepDown=10 value=100>
+            </span>
+        </div>
+        <div>
+            <button type="button" class="clear">Clear</button>
+            <button type="button" class="dfs">Depth First Search</button>
+            <button type="button" class="bfs">Breadth First Search</button>
         </div>
     </nav>
 </header>

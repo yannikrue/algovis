@@ -11,25 +11,21 @@
     <a href="sorting.html" class="links">Sorting algorithm  Visualizer</a>
     <a href="search.html" class="links">Search algorithm  Visualizer</a>
     <nav>
-        <div class="row">
-            <div id="newArray">
-                <button type="button" class="newArray">New Array</button>
-            </div>
-            <div class="col" id="input">
-                <span id="size">Size
-                    <input id="arr_sz" type="range" min="5" max="100" step=1 value=60>
-                </span>
-                <span id="speed">Speed
-                    <input id="speed_input" type="range" min="5" max="300" stepDown=10 value=60>
-                </span>
-            </div>
-            <div>
-                <button type="button" class="bubbleSort">Bubble Sort</button>
-                <button type="button" class="selectionSort">Selection Sort</button>
-                <button type="button" class="insertionSort">Insertion Sort</button>
-                <button type="button" class="quickSort">Quick Sort</button>
-                <button type="button" class="mergeSort">Merge Sort</button>
-            </div>
+        <div class="col" id="input">
+            <span id="size" class="slider">Size
+                <input id="arr_sz" type="range" min="5" max="100" step=1 value=60>
+            </span>
+            <span id="speed" class="slider">Speed
+                <input id="speed_input" type="range" min="5" max="300" stepDown=10 value=60>
+            </span>
+        </div>
+        <div>
+            <button type="button" class="newArray">New Array</button>
+            <button type="button" class="bubbleSort">Bubble Sort</button>
+            <button type="button" class="selectionSort">Selection Sort</button>
+            <button type="button" class="insertionSort">Insertion Sort</button>
+            <button type="button" class="quickSort">Quick Sort</button>
+            <button type="button" class="mergeSort">Merge Sort</button>
         </div>
     </nav>
 </header>

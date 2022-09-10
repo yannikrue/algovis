@@ -31,13 +31,14 @@ function waitforme(milisec) {
 }
 
 class Node {
-    constructor (y, x) {
+    constructor (y, x, back) {
       this.left = null;
       this.right = null;
       this.up = null;
       this.down = null;
       this.x = x;
       this.y = y;
+      this.backtrack = back;
     }
 }
 
