@@ -1,4 +1,7 @@
 # Sorting and Search Algorithms Visualization
+
+yannikrue.github.io/algovis/
+
 This website aims to help users understand and visualize various sorting and search algorithms through interactive demonstrations.
 
 ## Sorting Algorithms
