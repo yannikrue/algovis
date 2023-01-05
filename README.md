@@ -1,6 +1,6 @@
 # Sorting and Search Algorithms Visualization
 
-yannikrue.github.io/algovis/
+<a href="yannikrue.github.io/algovis/">Sorting and Search Algorithm Visualizer</a>
 
 This website aims to help users understand and visualize various sorting and search algorithms through interactive demonstrations.
 
